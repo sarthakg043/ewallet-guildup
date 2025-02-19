@@ -13,6 +13,7 @@ const LogoutButton = ({className}) => {
     // Clear stored tokens and any user-specific data
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('username');
     // Optionally, you can also call your backend logout endpoint here
     // Redirect the user to the login page
     navigate('/login');
