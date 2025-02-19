@@ -88,7 +88,7 @@ function Dashboard() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className=" relative max-w-4xl mx-auto">
-          <Loader loading={loading} />
+          {loading && <Loader loading={loading} />}
           <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
             {/* grid of 3 columns */}
             <div className='flex gap-2 justify-between items-center'>

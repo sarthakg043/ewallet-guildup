@@ -35,7 +35,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="relative max-w-md w-full bg-white shadow-md rounded px-8 py-6">
-        <Loader loading={loading} />
+        {loading && <Loader loading={loading} />}
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <form onSubmit={handleLogin}>
