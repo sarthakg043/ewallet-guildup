@@ -95,7 +95,7 @@ function Dashboard() {
                 <h1 className="text-3xl text-center font-bold mb-4">E-Wallet Dashboard</h1>
                 <LogoutButton />
             </div>
-            <h2 className="text-2xl font-medium mb-4">{localStorage.getItem('username') || "Username"}</h2>
+            <h2 className="text-2xl font-medium mb-4">My Id: {localStorage.getItem('username') || "Username"}</h2>
             <div className="text-2xl mb-6">
               Balance: ${balance.toFixed(2)}
             </div>
