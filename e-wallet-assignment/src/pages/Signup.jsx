@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, {
         username,
@@ -21,16 +24,20 @@ const Signup = () => {
       // Save token and userId in localStorage for later use
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userId', response.data.userId);
+      localStorage.setItem('username', response.data.username);
       // Redirect to the dashboard after successful signup
+      setLoading(false);
       navigate('/dashboard');
     } catch (err) {
+      setLoading(false);
       setError(err.response?.data?.message || 'Signup failed');
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white shadow-md rounded px-8 py-6">
+      <div className="relative max-w-md w-full bg-white shadow-md rounded px-8 py-6">
+        <Loader loading={loading} />
         <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <form onSubmit={handleSignup}>
